@@ -1,11 +1,13 @@
 <?php
     include('header.php');
+  
+
 ?>
 
 
 
 <?php
-$filtre;
+$filtre="TS";
     if(isset($_POST["TS"])){
         $filtre = "TS"; 
     }
@@ -86,10 +88,12 @@ $filtre;
                 $reponse = $bdd->query($sql);
 
                 // Affichage de chaque Produits 
-                echo '<div id="ZoneProduits">';
+                echo '<form method="post" >
+                <div id="ZoneProduits">';
                 while ($ligne = $reponse->fetch())
                 {
                     echo'<div class="produit">
+                    
                     <div class="imgs">
                         <img src="../img/Produits/'.$ligne['Image_produit'].'.jfif" alt="">
                     </div>
@@ -99,22 +103,31 @@ $filtre;
                     <div class="Prix">
                         <p>'.$ligne['Prix_produit']."$".'</p>
                         <div class="produit_commande_cible-Manipulation">
+                        
+                                <div style="display: none;" class="produit_commande_cible--IdProduit prodTEXT">'.$ligne['Id_produit'].'</div>
                                 <div style="display: none;" class="produit_commande_cible--prixFixe prodTEXT">'.$ligne['Prix_produit'].'</div>
                                 <div class="produit_commande_cible--prix prodTEXT">0</div>
                                 <div id="5" class="produit_commande_cible--qte- prodBTN"><button  class="class_btn_minus">-</button></div>
                                 <div  id="l9itha"class="produit_commande_cible--qteNumber prodTEXT">0</div>
-                                <div id="6" class="produit_commande_cible--qte+ PDQPLUS prodBTN"><button class="id_btn_plus">+</button></div>
+                                <div id="6" class="produit_commande_cible--qte+ PDQPLUS prodBTN" name="name_btn_plus"><button  class="id_btn_plus">+</button></div>
+                               
+                                
                         </div>
                     </div>
                 </div>';
                 }
-                echo '</div>';
+                echo '</div></form>';
                 $reponse->closeCursor();
 
                ?>
 
+ 
+                      
+
+
 <?php
     include('footer.php');
     include('script.php');
+
 ?>
 

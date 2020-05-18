@@ -413,7 +413,7 @@
   }
 }
 
-#Header #Panier {
+#Header form #Panier {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -427,13 +427,14 @@
       flex-wrap: wrap;
   width: 10%;
   height: 80px;
-  background-color: white;
+  background-color: transparent;
   border: 2px solid transparent;
   border-bottom-left-radius: 25px;
+  margin-left: 6px !important;
 }
 
 @media screen and (max-width: 768px) {
-  #Header #Panier {
+  #Header form #Panier {
     width: 35%;
     -ms-flex-pack: distribute;
         justify-content: space-around;
@@ -441,12 +442,12 @@
 }
 
 @media screen and (max-width: 425px) {
-  #Header #Panier {
+  #Header form #Panier {
     width: 25%;
   }
 }
 
-#Header #Panier button {
+#Header form #Panier button {
   border: 0;
   background: transparent;
   display: -webkit-box;
@@ -468,13 +469,13 @@
   cursor: pointer;
 }
 
-#Header #Panier button img {
+#Header form #Panier button img {
   width: 45px;
   height: 45px;
   margin-left: 20px;
 }
 
-#Header #Panier button p {
+#Header form #Panier button p {
   font-size: 18px;
   font-family: "Jost", sans-serif;
   font-weight: 700;

@@ -1,5 +1,7 @@
 <?php
-include('functions.php')
+    include('functions.php');
+    session_start();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,6 +11,7 @@ include('functions.php')
     <meta name="viewport" content="width=, initial-scale=1.0">
     <link rel="stylesheet" href="../css/header+footer.css">
     <link rel="stylesheet" href="../css/acceuil.css">
+    <link rel="stylesheet" href="../Style/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Jost&display=swap" rel="stylesheet">
@@ -37,13 +40,19 @@ include('functions.php')
                     <img id="profil" src="../img/profil.png" alt="">
                     <p>Mon Compte</p>
                 </div>
-                <div id="Panier">
-                    <button id="BtnPanier">
-                        <img src="../img/panier.png" alt="" id="imgpanier">
-                        <p id="Paragpanier" >0,00$</p>
-                    </button>
+                <form id="id_form_panier"  action="Panier.php" method="post">
+                    <div id="Panier">
+                    <input type="text" style="display: none;" name="QTE_SENDER" id="QTE_SENDER">
+                    <input type="text" style="display: none;" name="ID_SENDER" id="ID_SENDER">
+                        <button name="name_BtnPanier" id="BtnPanier">
+                            <img src="../img/panier.png" alt="" id="imgpanier">
+                            <p id="Paragpanier" ><?php if(!isset($_SESSION['total_prix']))  {echo '0' ;} else{echo $_SESSION['total_prix'];}?>$</p>
+                        </button>
 
-                </div>
+                    </div>
+
+                </form>
+               
 
             </div>
             <div id="CliqueSearchMobile" style="display: none;">
@@ -173,3 +182,4 @@ include('functions.php')
             </div>
         </form>
     </div>
+    
