@@ -111,9 +111,7 @@ margin-left: .75rem;
     width:32%;
     height:800px;
     background-color: #FFF;
-    z-index: 800;
-    position: relative;
-    float: right;
+    
 }
 body {
     background: #efefef;
