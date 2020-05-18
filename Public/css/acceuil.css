@@ -832,6 +832,13 @@
   }
 }
 
+.ImgPrincipale {
+  width: 100%;
+  height: 100px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 @use '../css/header+footer.scss';
 #ImgAcc {
   background-image: url(../img/food2.jpg);

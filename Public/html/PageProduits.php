@@ -1,15 +1,17 @@
 <?php
     include('header.php');
 ?>
-<div id="ZoneProduits">
+
+
+
 <?php
 $filtre;
     if(isset($_POST["TS"])){
-        $filtre = "TS";   
+        $filtre = "TS"; 
     }
     $filtre;
     if(isset($_POST["PL"])){
-        $filtre = "PL";   
+        $filtre = "PL"; 
     }
     else if(isset($_POST["BVP"])){
         $filtre = "BVP";
@@ -27,7 +29,8 @@ $filtre;
         $filtre = "ES";
     }
     else if(isset($_POST["ESL"])){
-        $filtre = "ESL";
+        $filtre = "ESL\r\n";
+        $filtre_img = "ESL";
     }
     
     else if(isset($_POST["B"])){
@@ -51,6 +54,16 @@ $filtre;
     else if(isset($_POST["ML"])){
         $filtre = "ML";
     }
+    if($filtre !="ESL\r\n"){
+        echo '<div class="ImgPrincipale" style="height:100px;width:100%;background-image: url(../img/ImgPrincipaleProduit/'.$filtre.'.png);">
+        </div>';
+    }
+    else{
+        echo '<div class="ImgPrincipale" style="height:100px;width:100%;background-image: url(../img/ImgPrincipaleProduit/'.$filtre_img.'.png);">
+        </div>';
+    }
+    
+     
     if($filtre !="TS"){
         $sql = "SELECT * FROM produit ,categorie where produit.Id_categorie = categorie.Id_categorie and categorie.Description_categorie ='$filtre'";
     }
@@ -72,7 +85,8 @@ $filtre;
                 // Récupération des 10 derniers messages
                 $reponse = $bdd->query($sql);
 
-                // Affichage de chaque message (toutes les données sont protégées par htmlspecialchars)
+                // Affichage de chaque Produits 
+                echo '<div id="ZoneProduits">';
                 while ($ligne = $reponse->fetch())
                 {
                     echo'<div class="produit">
@@ -84,18 +98,21 @@ $filtre;
                     </div>
                     <div class="Prix">
                         <p>'.$ligne['Prix_produit']."$".'</p>
-                        <div class="produit_commande_cible-Manipulation ">
-                            <div class="produit_commande_cible--qte- prodBTN"><button id="id_btn_minus">-</button></div>
-                            <div class="produit_commande_cible--qteNumber prodTEXT"><span id="id_span_qte">1</span></div>
-                            <div class="produit_commande_cible--qte+ prodBTN"><button id="id_btn_plus">+</button></div>
+                        <div class="produit_commande_cible-Manipulation">
+                                <div style="display: none;" class="produit_commande_cible--prixFixe prodTEXT">'.$ligne['Prix_produit'].'</div>
+                                <div class="produit_commande_cible--prix prodTEXT">0</div>
+                                <div id="5" class="produit_commande_cible--qte- prodBTN"><button  class="class_btn_minus">-</button></div>
+                                <div  id="l9itha"class="produit_commande_cible--qteNumber prodTEXT">0</div>
+                                <div id="6" class="produit_commande_cible--qte+ PDQPLUS prodBTN"><button class="id_btn_plus">+</button></div>
                         </div>
                     </div>
                 </div>';
                 }
+                echo '</div>';
                 $reponse->closeCursor();
 
                ?>
-</div>
+
 <?php
     include('footer.php');
     include('script.php');

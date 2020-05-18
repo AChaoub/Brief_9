@@ -5,84 +5,78 @@
 
 calcul_price();
 $(function () {
-    
+
     //diminue quantité
 
-        $(".produit_commande_cible--qte-").on('click', function (e) {
-
-             
-         
+    $(".produit_commande_cible--qte-").on('click', function (e) {
 
 
-            var number = Number($(this).next('.produit_commande_cible--qteNumber').text());
 
-          
 
-            if(number>1)
-            {
-                 number--;
-                var prix = Number($(this).prev().prev('.produit_commande_cible--prixFixe').text());
-                var expression =prix*number;
-                  $(this).prev('.produit_commande_cible--prix').text(expression);
-                   
-           
+
+        var number = Number($(this).next('.produit_commande_cible--qteNumber').text());
+
+
+
+        if (number > 1) {
+            number--;
+            var prix = Number($(this).prev().prev('.produit_commande_cible--prixFixe').text());
+            var expression = prix * number;
+            $(this).prev('.produit_commande_cible--prix').text(expression);
+
+
             $(this).next('.produit_commande_cible--qteNumber').text(number);
             $(this).next('.produit_commande_cible--qteNumber').text(number);
-                $(this).html("<button class='id_btn_plus'>-</button>");
-                $(this).next().next('.PDQPLUS').html("<button class='id_btn_plus'>+</button>");
+            $(this).html("<button class='id_btn_plus'>-</button>");
+            $(this).next().next('.PDQPLUS').html("<button class='id_btn_plus'>+</button>");
 
-            }
-            else
-            {
-                
-                $(this).next('.produit_commande_cible--qteNumber').text("0");
-                 
-                $(this).html("<button  class='class_btn_minus'><i style='color:red;' class='fas fa-trash-alt'></i></button>");
+        } else {
 
-            }
-    
-            calcul_price();
-            // alert($(this).attr('id'));
-            // console.log(number);
-    
-        });
+            $(this).next('.produit_commande_cible--qteNumber').text("0");
 
-        // auguement quantité
-        $(".PDQPLUS").on('click', function (e) {
+            $(this).html("<button  class='class_btn_minus'><i style='color:red;' class='fas fa-trash-alt'></i></button>");
+
+        }
+
+        calcul_price();
+        // alert($(this).attr('id'));
+        // console.log(number);
+
+    });
+
+    // auguement quantité
+    $(".PDQPLUS").on('click', function (e) {
 
 
-           
-      
-            var number = Number($(this).prev('.produit_commande_cible--qteNumber').text());
 
-           
-            if(number<4 )
-            {
-                number++;
-                var prix = Number($(this).prev().prev().prev().prev('.produit_commande_cible--prixFixe').text());
-                
-                 $(this).prev().prev().prev('.produit_commande_cible--prix').text(prix*number);
-                    
-          
+
+        var number = Number($(this).prev('.produit_commande_cible--qteNumber').text());
+
+
+        if (number < 4) {
+            number++;
+            var prix = Number($(this).prev().prev().prev().prev('.produit_commande_cible--prixFixe').text());
+
+            $(this).prev().prev().prev('.produit_commande_cible--prix').text(prix * number);
+
+
             $(this).prev('.produit_commande_cible--qteNumber').text(number);
             $(this).html("<button class='id_btn_plus'>+</button>");
             $(this).prev().prev('.produit_commande_cible--qte-').html("<button class='id_btn_plus'>-</button>");
 
-            }
-            else
-            {
-                
-                $(this).html("<button class='id_btn_plus'><i style='color:red;' class='far fa-hand-paper'></i></button>");
+        } else {
 
-            }
-    
-            calcul_price();
-            // alert($(this).attr('id'));
-            // console.log(number);
-    
-        });
-        
-       
+            $(this).html("<button class='id_btn_plus'><i style='color:red;' class='far fa-hand-paper'></i></button>");
+
+        }
+
+        calcul_price();
+        // alert($(this).attr('id'));
+        // console.log(number);
+
+    });
+
+
 
 
 
@@ -100,15 +94,15 @@ $(function () {
 //         else
 //         {
 //             var btnValuePlus= document.getElementsByClassName('id_btn_plus');
-            
+
 //             btnValuePlus[i].innerHTML="<i class='far fa-hand-paper'></i>";
 //             btnValuePlus[i].style.color="red";
-    
+
 //         }
-    
-     
+
+
 //     })
-    
+
 //     BTNminus[0].addEventListener('click',()=>{
 //         var cpt = Number(QteSpanValue.innerText);
 //         if(cpt>1)
@@ -120,8 +114,8 @@ $(function () {
 //         {
 //             BTNminus.innerHTML="<i class='fas fa-trash-alt'></i>";
 //         }
-        
-     
+
+
 //     })
 // }
 
@@ -148,39 +142,33 @@ $(function () {
 
 // }
 
-function calcul_price()
-{
+function calcul_price() {
     var totalPrix = document.getElementsByClassName('container_body_right--rightInfos_prix');
- 
+
 
     var allPrices = document.getElementsByClassName('produit_commande_cible--prix');
 
-    var sommePrix=0;
-    
-    
-    for(var i=0;i<allPrices.length;i++)
-    {
-        sommePrix+=Number(allPrices[i].innerHTML);
+    var sommePrix = 0;
+
+
+    for (var i = 0; i < allPrices.length; i++) {
+        sommePrix += Number(allPrices[i].innerHTML);
     }
     // sommePrix+="€";   
 
-    totalPrix[0].innerHTML=Number(sommePrix.toFixed(2));
-    totalPrix[1].innerHTML=Number(sommePrix.toFixed(2));
+    totalPrix[0].innerHTML = Number(sommePrix.toFixed(2));
+    totalPrix[1].innerHTML = Number(sommePrix.toFixed(2));
     livraison_msg(sommePrix);
 
 
 }
 
-function livraison_msg(prix)
-{
+function livraison_msg(prix) {
     var div_toDisplay = document.getElementsByClassName('div_livraison');
-    if(prix>=20)
-    {
-        div_toDisplay[0].style.visibility="hidden";
-    }
-    else
-    {
-        div_toDisplay[0].style.visibility="visible";
+    if (prix >= 20) {
+        div_toDisplay[0].style.visibility = "hidden";
+    } else {
+        div_toDisplay[0].style.visibility = "visible";
     }
 
 }
