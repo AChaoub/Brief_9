@@ -126,6 +126,16 @@ $filtre="TS";
 
 
 <?php
+                        if(isset($_POST['name_BtnPanier']))
+                        {
+                            echo 'clicked';
+                        }
+                        
+                        
+                        ?>
+
+
+<?php
     include('footer.php');
     include('script.php');
 
