@@ -1,7 +1,7 @@
 <?php
     include('header.php');
-  
-
+   
+    
 ?>
 
 
@@ -123,16 +123,6 @@ $filtre="TS";
 
  
                       
-
-
-<?php
-                        if(isset($_POST['name_BtnPanier']))
-                        {
-                            echo 'clicked';
-                        }
-                        
-                        
-                        ?>
 
 
 <?php

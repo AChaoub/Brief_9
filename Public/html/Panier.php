@@ -1,5 +1,15 @@
 <?php
     include('header.php');
+    // eliminer le cas ou l utilisateur ne selectionne rien et entre dans le panier
+    $res=[];
+    
+    
+    if($_SESSION['id_produit_temps']==null)
+    {
+        $_SESSION['id_produit_temps']=[];
+    }
+    array($_SESSION['id_produit_temps']);
+   
 
     if(isset($_POST['name_BtnPanier']))
     {
@@ -7,14 +17,18 @@
         {
             $res = explode(",", $_POST['ID_SENDER']);
 
+            for($i=0;$i<count($res);$i++)
+            {
+                
+                    array_push($_SESSION['id_produit_temps'],$res[$i]);
+ 
+            }
+ 
+                    
+ 
+            
+
             $QTE = explode(",", $_POST['QTE_SENDER']);
-
-            
-            
-          
-            
-
-           
  
         }
           
@@ -23,20 +37,6 @@
     
     ?>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
  
 
 <body>
@@ -93,47 +93,133 @@
                     {
                             die('Erreur : '.$e->getMessage());
                     }
+                   
                     $totalProduit=0;
+                     
+                    
+             
+                   if(count($res)>0)
+                   {
 
                    for($i=0;$i<count($res);$i++)
                    {
                        $sql='SELECT * FROM produit where produit.Id_produit ='.$res[$i];
                        $reponse = $bdd->query($sql);
-                       $ligne = $reponse->fetch();
-                       echo'<div class="produit_commande_cible">
-                       <div class="produit_commande_cible--img">
-                       <img src="../img/Produits/'.$ligne['Image_produit'].'.jfif" alt="">
-                       </div>
-                       <div class="produit_commande_cible--des prodTEXT">
-
-                           <span>
-                               '
-                               .$ligne['Description_produit'].'
-                           </span>
-
-                       </div>
-
-                       <div class="produit_commande_cible-Manipulation">
-                       <div style="display: none;" class="produit_commande_cible--IdProduit prodTEXT">'.$ligne['Id_produit'].'</div>
-                           <div style="display: none;" class="produit_commande_cible--prixFixe prodTEXT">'.$ligne['Prix_produit'].'</div>
-                           <div class="produit_commande_cible--prix prodTEXT">'.$ligne['Prix_produit']*$QTE[$i].'</div>
-                           <div id="5" class="produit_commande_cible--qte-NEW prodBTN"><button
-                                   class="class_btn_minus">-</button></div>
-                           <div id="l9itha" class="produit_commande_cible--qteNumber prodTEXT">'.$QTE[$i].'</div>
-                           <div id="6" class="produit_commande_cible--qte+ PDQPLUSNEW prodBTN"><button
-                                   class="id_btn_plus">+</button></div>
-                       </div>
-
-
-                   </div>';
-                   $totalProduit+=($ligne['Prix_produit']*$QTE[$i]);
-                   $_SESSION['total_prix']=$totalProduit;
-
-
-                   }
+                       if($reponse!=null)
+                       {
+                        $ligne = $reponse->fetch();
+                        echo'<div class="produit_commande_cible">
+                        <div class="produit_commande_cible--img">
+                        <img src="../img/Produits/'.$ligne['Image_produit'].'.jfif" alt="">
+                        </div>
+                        <div class="produit_commande_cible--des prodTEXT">
+ 
+                            <span>
+                                '
+                                .$ligne['Description_produit'].'
+                            </span>
+ 
+                        </div>
+ 
+                        <div class="produit_commande_cible-Manipulation">
+                        <div style="display: none;" class="produit_commande_cible--IdProduit prodTEXT">'.$ligne['Id_produit'].'</div>
+                            <div style="display: none;" class="produit_commande_cible--prixFixe prodTEXT">'.$ligne['Prix_produit'].'</div>
+                            <div class="produit_commande_cible--prix prodTEXT">'.$ligne['Prix_produit']*$QTE[$i].'</div>
+                            <div id="5" class="produit_commande_cible--qte-NEW prodBTN"><button
+                                    class="class_btn_minus">-</button></div>
+                            <div id="l9itha" class="produit_commande_cible--qteNumber prodTEXT">'.$QTE[$i].'</div>
+                            <div id="6" class="produit_commande_cible--qte+ PDQPLUSNEW prodBTN"><button
+                                    class="id_btn_plus">+</button></div>
+                        </div>
+ 
+ 
+                    </div>';
+                    // premier totalProduit
 
 
+                    $totalProduit+=($ligne['Prix_produit']*$QTE[$i]);
+             
+                   
+                       }
+ 
 
+
+
+                  
+                }
+                $_SESSION['total_prix']=$totalProduit;
+            }
+          echo '<h3 style="text-align:center;color:gray">Historique</h3>';
+
+                    if($_SESSION['id_produit_temps']!=null)
+                    {
+                        $result=array_unique($_SESSION['id_produit_temps'],1);
+                    $resultatSorted=[];
+                    $k=0;
+
+                    foreach($result as $ID )
+                    {
+                        $resultatSorted[$k]=$ID;
+                        $k++;
+
+                    }
+                    }
+                    
+             if(count($resultatSorted)>0)
+             {
+
+             for($i=0;$i<count($resultatSorted);$i++)
+             {
+                 $sql='SELECT * FROM produit where produit.Id_produit ='.$resultatSorted[$i];
+                 $reponse = $bdd->query($sql);
+                 if($reponse!=null)
+                 {
+                  $ligne = $reponse->fetch();
+                  echo'<div class="produit_commande_cible">
+                  <div class="produit_commande_cible--img">
+                  <img src="../img/Produits/'.$ligne['Image_produit'].'.jfif" alt="">
+                  </div>
+                  <div class="produit_commande_cible--des prodTEXT">
+
+                      <span>
+                          '
+                          .$ligne['Description_produit'].'
+                      </span>
+
+                  </div>
+
+                  <div class="produit_commande_cible-Manipulation">
+                  <div style="display: none;" class="produit_commande_cible--IdProduit prodTEXT">'.$ligne['Id_produit'].'</div>
+                      <div style="display: none;" class="produit_commande_cible--prixFixe prodTEXT">'.$ligne['Prix_produit'].'</div>
+                      <div class="produit_commande_cible--prix prodTEXT">'.$ligne['Prix_produit'].'</div>
+                      <div id="5" class="produit_commande_cible--qte-NEW prodBTN"><button
+                              class="class_btn_minus">-</button></div>
+                      <div id="l9itha" class="produit_commande_cible--qteNumber prodTEXT">1</div>
+                      <div id="6" class="produit_commande_cible--qte+ PDQPLUSNEW prodBTN"><button
+                              class="id_btn_plus">+</button></div>
+                  </div>
+
+
+              </div>';
+              // premier totalProduit
+
+
+            //   $totalProduit+=($ligne['Prix_produit']*$QTE[$i]);
+       
+             
+                 }
+
+
+
+
+            
+          }
+        }
+        
+
+
+
+             
 
                ?>
                    
