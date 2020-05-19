@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : mar. 19 mai 2020 à 18:39
+-- Généré le : mar. 19 mai 2020 à 18:57
 -- Version du serveur :  5.6.17
 -- Version de PHP : 7.4.6
 
@@ -95,6 +95,13 @@ CREATE TABLE `commande` (
   `Id_Commande` int(11) NOT NULL,
   `Date_Commande` datetime DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `commande`
+--
+
+INSERT INTO `commande` (`CIN`, `Id_Commande`, `Date_Commande`) VALUES
+('HH100202', 1, '2020-05-19 16:50:01');
 
 -- --------------------------------------------------------
 
@@ -189,11 +196,11 @@ INSERT INTO `produit` (`Id_produit`, `Id_categorie`, `Prix_produit`, `Descriptio
 (58, 12, 2.77, 'Adult assortiment sachets repas poissons en gelée', 100, 'A58'),
 (59, 12, 4.55, 'Purina One dual nature croquettes poulet céréales', 100, 'A59'),
 (60, 12, 4.11, 'Felix Sachets repas pâtée en gelée viandes', 100, 'A60'),
-(66, 13, 100.84, 'KRUPS Expresso Broyeur à grains Essential YY3957FD', 100, NULL),
-(67, 13, 200.29, 'PHILIPS Cafetière à dosettes Senseo Original HD6553/23, Bleu gris', 100, NULL),
-(68, 13, 200.77, 'KRUPS Cafetière à dosette Dolce Gusto - YY4230FD - Anthracite', 100, NULL),
-(69, 13, 60.55, 'KRUPS Grille-pain KH682D10 - Inox', 100, NULL),
-(70, 13, 150.11, 'KRUPS Cafetière Pro Aroma Plus KM321010, Inox', 100, NULL);
+(61, 13, 100.84, 'KRUPS Expresso Broyeur à grains Essential YY3957FD', 100, 'A61'),
+(62, 13, 200.29, 'PHILIPS Cafetière à dosettes Senseo Original HD6553/23, Bleu gris', 100, 'A62'),
+(63, 13, 200.77, 'KRUPS Cafetière à dosette Dolce Gusto - YY4230FD - Anthracite', 100, 'A63'),
+(64, 13, 60.55, 'KRUPS Grille-pain KH682D10 - Inox', 100, 'A64'),
+(65, 13, 150.11, 'KRUPS Cafetière Pro Aroma Plus KM321010, Inox', 100, 'A65');
 
 -- --------------------------------------------------------
 
