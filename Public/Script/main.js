@@ -26,6 +26,7 @@ $(function () {
             }
             remplir_panier();
             calcul_price();
+            Send_data();
         
      
     
@@ -55,6 +56,7 @@ $(function () {
             }
             remplir_panier();
             calcul_price();
+            Send_data();
            
     
         });
@@ -90,6 +92,33 @@ function calcul_price() {
 
 
 }
+function Send_data()
+   {
+       var allID  = document.getElementsByClassName('IDproduit_commande');
+
+       var ALLQTE = document.getElementsByClassName('QTEPROD');
+
+       var hiddenID=document.getElementById('HiddenIDS');
+
+       var hiddenQte=document.getElementById('HiddenQTES');
+
+     
+    hiddenID.value="";
+    hiddenQte.value="";
+
+       for(var i=0;i<allID.length;i++)
+       {
+         hiddenID.value+="|"+allID[i].innerHTML;
+         hiddenQte.value+="|"+ALLQTE[i].innerHTML;
+        
+        
+       }
+       console.log(hiddenID.value);
+       console.log(hiddenQte.value);
+
+       
+   }
+   console.log("tested");
 
 function livraison_msg(prix) {
     var div_toDisplay = document.getElementsByClassName('div_livraison');
@@ -98,10 +127,7 @@ function livraison_msg(prix) {
     } else {
         div_toDisplay[0].style.visibility = "visible";
     }
-    return
+     
 
 }
-// document.getElementById('backToCategorie').addEventListener('click',=>
-// {
-     
-// })
+   
