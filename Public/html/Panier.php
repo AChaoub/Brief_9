@@ -7,8 +7,7 @@
     if($_SESSION['id_produit_temps']==null)
     {
         $_SESSION['id_produit_temps']=[];
-       
-
+ 
     }
     else
     {
@@ -244,7 +243,7 @@
              if($_SESSION['id_produit_temps']!=null)
              {
                 $_SESSION['id_produit_temps']=null;
-                header('Location: index.php');
+               
              }
            }           
  
@@ -299,7 +298,7 @@
                                 
 
                             }
-                            print_r($collectionQTE);
+                            // print_r($collectionQTE);
                         
                             //insertion dans la commande
                             if($problemStock==false)
@@ -314,6 +313,56 @@
                                 }
                            
                                 $CIN_Client="HH100202";
+                                $Carte_Client="MACARTE001";
+
+                                // check si le client a  le solde pour effectuer cette operation :
+
+                                $balanceClient=0;
+                                $totalFacture=0.0;
+                                $Eachprice=0;
+
+                                $req_b='SELECT  Balance from client,carte_bancaire where client.CIN=carte_bancaire.CIN and client.CIN="'.$CIN_Client.'" and carte_bancaire.Num_Carte="'.$Carte_Client.'"';
+                                $reponse_b = $bdd->query($req_b);
+                                $balanceClient=$reponse_b->fetchColumn();
+                                //le calcul du total prix de la base de donnée et non pas du html 
+
+                                for($j=0;$j<count($ID_PRODEach);$j++)
+                                {
+                                    $req_p='select produit.Prix_produit from produit where produit.Id_produit="'.$ID_PRODEach[$j].'"';
+                                    $reponse_p = $bdd->query($req_p);
+                                    $Eachprice=(float)$reponse_p->fetchColumn();
+                                    $EachPriceCastFloat=(float)$Eachprice;
+                                   
+                                        $totalFacture=$totalFacture+(float)($EachPriceCastFloat*(int)$QTEProdEach[$j]);
+ 
+
+                                }
+                                //total prix remplis
+                                 $diff=$balanceClient-$totalFacture;
+                                 $BalanceProblem=false;
+                                  if($diff>0)
+                                  {
+                                    $sql = 'UPDATE carte_bancaire set Balance='.$diff.'where Num_Carte="'.$Carte_Client.'"';
+ 
+                                    $bdd->query($sql);
+                                     
+
+                                  }
+                                  else
+                                  {
+                                      $BalanceProblem=true;
+                                      echo 'Solde insuffisant';
+                                  }
+
+                                 
+
+
+
+
+
+
+                                // echo $balanceClient;
+
                                 
 
 
@@ -324,7 +373,7 @@
                                 $r=0;
                               
  
-                                if ($stmt->execute([$CIN_Client, $iDcmd])==false) 
+                                if (!$stmt->execute([$CIN_Client, $iDcmd]) && $BalanceProblem==false) 
                                 {
                                     for($i=0;$i<count($ID_PRODEach);$i++)
                                     {
@@ -332,11 +381,11 @@
                                         {
                                             $sql = "INSERT INTO quantite_commande (Id_Commande, Id_produit, Qte)VALUES ($iDcmd, $ID_PRODEach[$i],$QTEProdEach[$i])";
                                             $bdd->query($sql);
-                                            echo'<br>' .$sql;
+                                            // echo'<br>' .$sql;
                                             $sql = "UPDATE produit set produit.Quantite_Max= $collectionQTE[$r]  where Id_produit=".$ID_PRODEach[$i];
                                             $r++;
                                             $bdd->query($sql);
-                                            echo'<br>' .$sql;
+                                            // echo'<br>' .$sql;
                                         }
                                      
 
@@ -350,13 +399,7 @@
                              
 
                             }
-                             
-
-                            
-
-                //         echo "New record created successfully";
-                //         } else {
-                //         echo "Error: " . $sql . "<br>" . $conn->error;
+ 
 
                         }
 

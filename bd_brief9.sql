@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 15 mai 2020 à 01:16
+-- Généré le :  mer. 20 mai 2020 à 08:47
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.2.18
 
@@ -33,12 +33,19 @@ CREATE TABLE IF NOT EXISTS `carte_bancaire` (
   `CIN` varchar(254) DEFAULT NULL,
   `Num_Carte` varchar(254) NOT NULL,
   `Balance` float DEFAULT NULL,
-  `Anne_Exp` datetime DEFAULT NULL,
+  `Anne_Exp` varchar(10) DEFAULT NULL,
   `Crypto` varchar(254) DEFAULT NULL,
-  `Mois_Exp` datetime DEFAULT NULL,
+  `Mois_Exp` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`Num_Carte`),
   KEY `FK_Association_5` (`CIN`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `carte_bancaire`
+--
+
+INSERT INTO `carte_bancaire` (`CIN`, `Num_Carte`, `Balance`, `Anne_Exp`, `Crypto`, `Mois_Exp`) VALUES
+('HH100202', 'MACARTE001', 422.41, '2022', '169', '08');
 
 -- --------------------------------------------------------
 
@@ -92,6 +99,13 @@ CREATE TABLE IF NOT EXISTS `client` (
   PRIMARY KEY (`CIN`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Déchargement des données de la table `client`
+--
+
+INSERT INTO `client` (`CIN`, `Nom_client`, `Prenom_client`, `Date_Naissance`, `Tel_Client`, `Email`, `Password`, `Adresse`, `NumCarte`) VALUES
+('HH100202', 'Choukri', 'Mehdi', '1995-02-26', '0614075409', 'Mehdi@gmail.com', '123456', 'Safi II', 'MACARTE001');
+
 -- --------------------------------------------------------
 
 --
@@ -106,6 +120,47 @@ CREATE TABLE IF NOT EXISTS `commande` (
   PRIMARY KEY (`Id_Commande`),
   KEY `FK_Association_2` (`CIN`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `commande`
+--
+
+INSERT INTO `commande` (`CIN`, `Id_Commande`, `Date_Commande`) VALUES
+('BH100200', 1, '2020-05-13 00:00:00'),
+('HH10100', 2, '2020-05-19 09:03:03'),
+('HH100202', 3, '2020-05-19 09:04:59'),
+('HH100202', 4, '2020-05-19 09:05:04'),
+('HH100202', 5, '2020-05-19 09:05:39'),
+('HH100202', 6, '2020-05-19 09:06:52'),
+('HH100202', 7, '2020-05-19 09:07:01'),
+('HH100202', 8, '2020-05-19 09:07:25'),
+('HH100202', 9, '2020-05-19 09:08:38'),
+('HH100202', 10, '2020-05-19 09:13:28'),
+('HH100202', 11, '2020-05-19 09:14:08'),
+('HH100202', 12, '2020-05-19 09:14:28'),
+('HH100202', 13, '2020-05-19 09:15:52'),
+('HH100202', 14, '2020-05-19 09:16:45'),
+('HH100202', 15, '2020-05-19 09:17:45'),
+('HH100202', 16, '2020-05-19 09:21:20'),
+('HH100202', 17, '2020-05-19 09:21:51'),
+('HH100202', 18, '2020-05-19 09:22:38'),
+('HH100202', 19, '2020-05-19 12:53:47'),
+('HH100202', 20, '2020-05-19 13:03:44'),
+('HH100202', 21, '2020-05-20 08:14:53'),
+('HH100202', 22, '2020-05-20 08:26:47'),
+('HH100202', 23, '2020-05-20 08:28:09'),
+('HH100202', 24, '2020-05-20 08:28:19'),
+('HH100202', 25, '2020-05-20 08:28:37'),
+('HH100202', 26, '2020-05-20 08:29:00'),
+('HH100202', 27, '2020-05-20 08:31:25'),
+('HH100202', 28, '2020-05-20 08:32:24'),
+('HH100202', 29, '2020-05-20 08:32:43'),
+('HH100202', 30, '2020-05-20 08:34:53'),
+('HH100202', 31, '2020-05-20 08:35:56'),
+('HH100202', 32, '2020-05-20 08:37:58'),
+('HH100202', 33, '2020-05-20 08:44:11'),
+('HH100202', 34, '2020-05-20 08:44:23'),
+('HH100202', 35, '2020-05-20 08:46:07');
 
 -- --------------------------------------------------------
 
@@ -147,43 +202,43 @@ CREATE TABLE IF NOT EXISTS `produit` (
 
 INSERT INTO `produit` (`Id_produit`, `Id_categorie`, `Prix_produit`, `Description_produit`, `Quantite_Max`, `Image_produit`) VALUES
 (1, 1, 5.34, 'lait demi-écrémé stérilisé UHT-\' issu d’animaux nourris sans OGM (< 0.9%)\'', 100, NULL),
-(3, 1, 6.11, 'BIO Lait demi-écrémé équitable UHT', 100, NULL),
+(3, 1, 6.11, 'BIO Lait demi-écrémé équitable UHT', 95, NULL),
 (2, 1, 5.94, 'Lait demi-écrémé équitable UHT', 100, NULL),
 (4, 1, 1.77, 'AUCHAN Beurre doux 250g', 100, NULL),
-(5, 1, 3.55, 'BIO Fromage blanc 500g', 100, NULL),
-(10, 2, 3.11, 'Auchan merguez x6 - 330g', 100, NULL),
+(5, 1, 3.55, 'BIO Fromage blanc 500g', 96, NULL),
+(10, 2, 3.11, 'Auchan merguez x6 - 330g', 82, NULL),
 (9, 2, 3.94, 'chipolatas x6 - 330g', 100, NULL),
 (8, 2, 1.77, 'Cheveux d ange 5%mg 500g', 100, NULL),
-(7, 2, 3.55, 'steaks hachés 5%mg x2 - 250g', 100, NULL),
-(6, 2, 3.55, 'saumon fumé mini x6 - 100g', 100, NULL),
+(7, 2, 3.55, 'steaks hachés 5%mg x2 - 250g', 92, NULL),
+(6, 2, 3.55, 'saumon fumé mini x6 - 100g', 71, NULL),
 (11, 3, 1.84, 'Blanc de poulet doré au four 6 tranches 180g', 100, NULL),
 (12, 3, 2.22, 'Jambon supérieur -25% de sel sans couenne 4 tranches 160g', 100, NULL),
-(13, 3, 1.77, 'Le Bon Paris Jambon au torchon sans nitrite 4 tranches 140g', 100, NULL),
-(14, 3, 3.55, 'Lardons fumés 2x150g', 100, NULL),
-(15, 3, 3.55, 'Jambon cru tranches fines et fondantes 6 tranches 100g', 100, NULL),
+(13, 3, 1.77, 'Le Bon Paris Jambon au torchon sans nitrite 4 tranches 140g', 96, NULL),
+(14, 3, 3.55, 'Lardons fumés 2x150g', 82, NULL),
+(15, 3, 3.55, 'Jambon cru tranches fines et fondantes 6 tranches 100g', 98, NULL),
 (16, 4, 1.84, 'Oranges bio 1kg', 100, NULL),
-(17, 4, 2.29, 'Pommes Golden filière responsable AOP 1kg', 100, NULL),
-(18, 4, 2.77, 'Poires barquette 750g', 100, NULL),
-(19, 4, 4.55, 'Fraises gariguette 250g', 100, NULL),
+(17, 4, 2.29, 'Pommes Golden filière responsable AOP 1kg', 95, NULL),
+(18, 4, 2.77, 'Poires barquette 750g', 98, NULL),
+(19, 4, 4.55, 'Fraises gariguette 250g', 93, NULL),
 (20, 4, 3.11, 'bio Kiwis 6 pièces', 100, NULL),
 (21, 5, 1.84, 'Pizza cuite sur pierre au chorizo 390g', 100, NULL),
-(22, 5, 2.29, 'Pizza cuites sur pierre royale 370g', 100, NULL),
-(23, 5, 2.77, 'Buitoni Pizza fraîch up 4 fromages 600g', 100, NULL),
+(22, 5, 2.29, 'Pizza cuites sur pierre royale 370g', 98, NULL),
+(23, 5, 2.77, 'Buitoni Pizza fraîch up 4 fromages 600g', 98, NULL),
 (24, 5, 4.55, 'Crêpe jambon emmental 1kg', 100, NULL),
-(25, 5, 4.11, ' Paëlla 900g', 100, NULL),
-(26, 6, 1.84, 'Nescafé grande dolce gusto capsule x16 -128g', 100, NULL),
+(25, 5, 4.11, ' Paëlla 900g', 98, NULL),
+(26, 6, 1.84, 'Nescafé grande dolce gusto capsule x16 -128g', 96, NULL),
 (27, 6, 2.29, 'CHARLES ET ALICE Spécialité pomme banane vanille sans sucres ajoutés 4x100g', 100, NULL),
 (28, 6, 2.77, 'L Or espresso delizioso n°5 capsule alu x10 -52g', 100, NULL),
 (29, 6, 4.55, 'Tassimo Grand Mère café petit déjeuner dosette x16 -132g', 100, NULL),
 (30, 6, 4.11, 'café classique dosette x48 -333g', 100, NULL),
 (31, 7, 1.84, 'Tuiles saveur crème oignon 170g', 100, NULL),
-(32, 7, 2.29, 'Chips à lancienne nature - sachets individuels 6x30g', 100, NULL),
+(32, 7, 2.29, 'Chips à lancienne nature - sachets individuels 6x30g', 98, NULL),
 (33, 7, 2.77, 'Chips nature à lhuile de tournesol 200g', 100, NULL),
-(34, 7, 4.55, 'Chips saveur barbecue 130g', 100, NULL),
+(34, 7, 4.55, 'Chips saveur barbecue 130g', 76, NULL),
 (35, 7, 4.11, 'Chips ondulées paysanne nature 300g', 100, NULL),
-(36, 8, 1.84, 'Eau minérale naturelle gazeuse 6x1l', 100, NULL),
+(36, 8, 1.84, 'Eau minérale naturelle gazeuse 6x1l', 79, NULL),
 (37, 8, 2.29, 'Pur jus d orange sans pulpe 1,5l', 100, NULL),
-(38, 8, 2.77, 'Pressade Nectar multifruits sans pulpe bio brique 1l', 100, NULL),
+(38, 8, 2.77, 'Pressade Nectar multifruits sans pulpe bio brique 1l', 98, NULL),
 (39, 8, 4.55, 'Coca cola Boisson gazeuse aux extraits', 100, NULL),
 (40, 8, 4.11, 'Eau de source plate bouteilles 12x33cl', 100, NULL),
 (41, 9, 1.84, 'Gallia Calisma 1 lait 1er âge en poudre', 100, NULL),
@@ -226,6 +281,97 @@ CREATE TABLE IF NOT EXISTS `quantite_commande` (
   KEY `FK_Association_8` (`Id_produit`),
   KEY `FK_Association_9` (`Id_Commande`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `quantite_commande`
+--
+
+INSERT INTO `quantite_commande` (`Id_Commande`, `Id_produit`, `Qte`) VALUES
+(7, 7, 4),
+(7, 13, 3),
+(7, 17, 1),
+(8, 7, 4),
+(8, 13, 3),
+(8, 17, 1),
+(9, 7, 4),
+(9, 13, 3),
+(9, 17, 1),
+(10, 7, 4),
+(10, 13, 3),
+(11, 7, 4),
+(11, 13, 3),
+(12, 7, 4),
+(12, 13, 3),
+(13, 7, 4),
+(13, 13, 3),
+(13, 17, 1),
+(14, 7, 4),
+(14, 13, 3),
+(14, 17, 1),
+(15, 22, 2),
+(15, 23, 2),
+(15, 26, 4),
+(18, 3, 2),
+(18, 10, 2),
+(18, 6, 2),
+(19, 6, 2),
+(19, 18, 2),
+(19, 19, 4),
+(20, 17, 4),
+(20, 25, 2),
+(20, 32, 2),
+(21, 5, 4),
+(21, 6, 2),
+(21, 14, 2),
+(21, 19, 3),
+(22, 6, 2),
+(22, 14, 2),
+(22, 34, 3),
+(22, 36, 3),
+(23, 6, 2),
+(23, 14, 2),
+(23, 34, 3),
+(23, 36, 3),
+(24, 6, 2),
+(24, 14, 2),
+(24, 34, 3),
+(24, 36, 3),
+(25, 6, 2),
+(25, 14, 2),
+(25, 34, 3),
+(25, 36, 3),
+(26, 6, 2),
+(26, 14, 2),
+(26, 34, 3),
+(26, 36, 3),
+(27, 6, 2),
+(27, 14, 2),
+(27, 34, 3),
+(27, 36, 3),
+(28, 6, 2),
+(28, 14, 2),
+(28, 34, 3),
+(28, 36, 3),
+(29, 10, 2),
+(29, 6, 1),
+(29, 14, 1),
+(29, 15, 1),
+(30, 10, 2),
+(30, 6, 1),
+(30, 14, 1),
+(30, 15, 1),
+(31, 3, 1),
+(31, 10, 4),
+(31, 6, 1),
+(32, 3, 1),
+(32, 10, 4),
+(32, 6, 1),
+(34, 3, 1),
+(34, 10, 4),
+(34, 6, 1),
+(35, 6, 4),
+(35, 34, 3),
+(35, 38, 2);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
