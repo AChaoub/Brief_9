@@ -57,7 +57,7 @@ display: flex;
 #Email{
     border-radius: 3px;
     width: 45%;
-    height: 7%;
+    height: 36px;
     margin-left: 211px;
     text-align: center;
     font-style: oblique;
@@ -68,12 +68,13 @@ display: flex;
     display: flex;
     border-radius: 3px;
     width: 45%;
-    height: 7%;
+    height: 36px;
     margin-left: 211px;
     text-align: center;
     font-style: oblique;
     border: ridge;
     margin-top: 32px;
+    
 }
 .titre4{
     color: black;
@@ -140,7 +141,7 @@ display: flex;
     display: flex;
     position: absolute;
     opacity: 0.8;
-    margin-top: 56%;
+    margin-top: 67%;
 
     & .titl1{
         color: white;

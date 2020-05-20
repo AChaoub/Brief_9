@@ -59,7 +59,7 @@ body {
 #Email {
   border-radius: 3px;
   width: 45%;
-  height: 7%;
+  height: 36px;
   margin-left: 211px;
   text-align: center;
   font-style: oblique;
@@ -75,7 +75,7 @@ body {
   display: flex;
   border-radius: 3px;
   width: 45%;
-  height: 7%;
+  height: 36px;
   margin-left: 211px;
   text-align: center;
   font-style: oblique;
@@ -155,7 +155,7 @@ body {
   display: flex;
   position: absolute;
   opacity: 0.8;
-  margin-top: 56%;
+  margin-top: 67%;
 }
 
 .sousdiv2 .titl1 {

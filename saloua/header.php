@@ -37,8 +37,8 @@ include('login.php');
 
                 </div>
                 <div id="Moncompte">
-                    <img id="profil" src="image/profil.png" alt="">
-                    <p>Mon Compte</p>
+                    <img id="profil" src="image/profil.png" alt=""  >
+                    <p><a href="profile.php"> Mon Compte</a></p>
                 </div>
                 <div id="Panier">
                     <button>

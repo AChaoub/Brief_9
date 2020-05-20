@@ -1,3 +1,75 @@
+<?php
+include('login.php');
+?>
+<?php 
+session_start();
+
+//connect to database
+$con =mysqli_connect($servername,$username,$password,$dbname);
+
+// if (isset($_POST['Email'])){
+//     $Email = stripslashes($_REQUEST['Email']);
+//     $Email = mysqli_real_escape_string($con, $Email);
+//     $Password = stripslashes($_REQUEST['Password']);
+//     $Password = mysqli_real_escape_string($con, $Password);
+//       $query = "SELECT * FROM `client` WHERE Email='$Email' and Password='$Password'";
+//     $result = mysqli_query($con,$query) or die(mysql_error());
+//     $rows = mysqli_num_rows($result);
+//     if($rows==1){
+//         $_SESSION['Email'] = $Email;
+//         header("Location: page2.php");
+//     }else{
+//       echo "Le nom d'utilisateur ou le mot de passe est incorrect.";
+//     }
+//   }
+
+// if (isset($_POST['submit'])) {
+//     $Email = $_POST['Email'];
+//     $Password = $_POST['Password'];
+
+//     //select table
+//     $sql = "SELECT * FROM client WHERE Email='".$Email."' AND Password='".$Password."' ";
+//     $res=mysqli_query($con,$sql);
+//     if (mysqli_num_rows($res) == 1) {
+//     echo "page2.php";
+//     exit();
+//     } else {
+//     echo "Invalid log in information.";
+//     exit();
+//         header ('location:page2.php');
+//     }
+// }
+ if(isset($_POST['submit'])){
+   $Email=$_POST['Email'];
+   $Password=$_POST['Password'];
+   if($Email&&$Password)
+   {
+    //    $Password=md5($Password);
+       $query="SELECT * FROM `client` WHERE  Email='".$Email."'&&Password='".$Password."'";
+      if(mysqli_query($con,$query)){
+
+      }
+      else{
+        echo 'bad'.$query .mysqli_error($con);
+      }
+    //    $rows=mysqli_num_rows($sql);
+    //    if ($rows) {
+    //        $_SESSION['Email']=$Email;
+    //     //    header('Location:page2.php');
+    //     $query= mysqli_fetch_assoc($sql);
+           
+       } else {
+           echo "Email et mot de passe incorrect";
+           
+       }
+       
+
+
+
+
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,29 +78,13 @@
     <link rel="stylesheet" href="css/login.css">
   
     
-
+    
 
     <title>Auchan</title>
 </head>
 
 <body>
-<?php 
- //get values passe from form profil.php file
- if(isset($_POST['submit'])):
 
- $Email=htmlentities($_POST['Email']);
- $Password=htmlentities($_POST['Password']);
- $sql= " INSERT INTO client VALUES ($Email',' $Password')";
-
- if(mysqli_query($con,$sql)){
-    echo "page2.php".$sql .mysql_error($con);
-} else {
-    echo "Failed to login" ;
-}
-
-endif;
- 
-?>
 
 <div class="header" >
    <h1 class="titre">Auchan</h1>
@@ -39,12 +95,14 @@ endif;
         <div class="form">
         <h3 class=titre2> Je me connecte</h3>
         <p class="titre3">Encore quelques clics et le tour est joué !</p>
-   
+
+   <form action="profile.php" method="POST" style="height: 274px;" >
         <input type="text"  name="Email" id="Email" placeholder="Adresse e-mail">
         <input type="password" name="Password" id="Password" placeholder="Mot de passe">
         <p class="titre4"> <a href="#">Oups ! J’ai oublié mon mot de passe</a></p>
-        <input type="submit" value="je me connecte!" class="submit">
-
+        <input type="submit" value="je me connecte!" class="submit" name="submit">
+   
+    </form>
         <div class="sousdiv">
             <p class="titre5"> <a href="#">Vous n’avez pas de compte ?</a></p>
             <input type="text"  name="compte" id="compte" placeholder="Créer mon compte">

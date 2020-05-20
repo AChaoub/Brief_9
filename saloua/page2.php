@@ -1,3 +1,12 @@
+<?php
+include('login.php');
+session_start();
+if(!isset($_SESSION["Email"])){
+    header("Location: profile.php");
+    exit(); 
+  }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +23,7 @@
     ?>
     
 <div class="head">
-<h1 class="title">Mon compte Auchan</h1>
+<h1 class="title"> Mon compte Auchan <?php echo $_SESSION['Email']; ?></h1>
 </div>
 
  <div class="menu">
