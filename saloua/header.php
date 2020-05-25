@@ -7,7 +7,8 @@ include('login.php');
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="css/header+footer.css">
     <link rel="stylesheet" href="css/acceuil.css">
     <link href="https://fonts.googleapis.com/css?family=Jost&display=swap" rel="stylesheet">
@@ -15,6 +16,8 @@ include('login.php');
     <script src="js/header+footer.js"></script>
 
     <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+
 </head>
 
 <body>
@@ -149,3 +152,6 @@ include('login.php');
         </div>
     </div>
     <div class="blanck"></div>
+
+    <script src="js/html5shiv.min.js"></script>
+        <script src="js/respond.min.js"></script>

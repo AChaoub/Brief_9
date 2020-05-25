@@ -2,7 +2,7 @@
 include('login.php');
 session_start();
 if(!isset($_SESSION["Email"])){
-    header("Location: profile.php");
+    // header("Location: profile.php");
     exit(); 
   }
 
