@@ -14,6 +14,7 @@ include('login.php');
     <link href="https://fonts.googleapis.com/css?family=Jost&display=swap" rel="stylesheet">
 
     <script src="js/header+footer.js"></script>
+    <script src="js/index.js"></script>
 
     <title>Document</title>
     <link rel="stylesheet" href="css/bootstrap.css">
@@ -41,8 +42,13 @@ include('login.php');
                 </div>
                 <div id="Moncompte">
                     <img id="profil" src="image/profil.png" alt=""  >
-                    <p><a href="profile.php"> Mon Compte</a></p>
+                    <p><a href="profile.php" > Mon Compte</a></p>
                 </div>
+                <div id="Moncompte">
+            
+                </div>
+               
+
                 <div id="Panier">
                     <button>
                         <img src="image/panier.png" alt="">
@@ -76,7 +82,7 @@ include('login.php');
             <div id="message1">
                 <p>Vos courses en ligne avec Carrefour</p>
             </div>
-            <div><button>Je me connecte</button></div>
+            <div><button><a href="espace.php" style="text-decoration:none;">Je me connecte</a></button></div>
         </div>
 
     </div>

@@ -1,29 +1,48 @@
 <?php
+include('login.php');
 include('header.php');
 ?>
 
-<form style="width: 56%;margin-bottom: 1rem;color: #212529;margin-left: 18rem;text-align: center; margin-top: 4rem;">
-<select class="form-control" style="    margin-bottom: 13px;">
-  <option>Réf.Produit</option>
-</select>
-  <div class="form-group">
-   
-    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Qté en stock:">
-  </div>
-  <div class="form-group">
-  
-    <input type="text" class="form-control" id="formGroupExampleInput2"Désigniation du produit:">
-  </div>
-  <div class="form-group">
-    
-    <input type="text" class="form-control" id="formGroupExampleInput2"Prix unitaire:">
-  </div>
+<br>
+<br>
+<div class="col-md-10 " style="margin: auto;">
+        <?php
+            $sql="SELECT * FROM produit";
+            $stm=$con->prepare($sql);
+            $stm->execute();
+            $result=$stm->get_result();
+        ?>
+            <h4 class="text-center bg-primary text-white p-2">Produit</h4>
+            <br>
+            <table class="table mr-4">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Id_produit</th>
+                    <th>Description_produit</th>
+                    <th> Quantite_Max</th>
+                    <th> Prix_produit</th>
+                   
 
-  <button type="button" class="btn btn-outline-primary" style="padding: 0.375rem 2.75rem;"><a href="admin.php" style="text-decoration: none;">Retour</a></button>
-  
-</form>
-
-      
+                </tr>
+            </thead>
+            <tbody >
+            <?php while($row=$result->fetch_assoc()){ ?>
+                <tr>
+                    <td><?=$row['Id_produit'];?></td>
+                    <td><?=$row['Description_produit'];?></td>
+                    <td><?=$row['Quantite_Max'];?></td>
+                    <td><?=$row['Prix_produit'];?></td>
+                 
+            <?php } ?>
+            </tbody>
+        </table>
+</div>
+<br>
+<div class="col-md-4 " style="margin:auto;">
+<button type="button" class="btn btn-success btn-block p-2 "><a href="admin.php" style="text-decoration: none; color:white;">Retour</a></button>
+</div>
+<br>
+<br>
 <?php
 include('footer.php');
 ?>

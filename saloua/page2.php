@@ -1,10 +1,10 @@
 <?php
 include('login.php');
 session_start();
-if(!isset($_SESSION["Email"])){
-    // header("Location: profile.php");
-    exit(); 
-  }
+// if(!isset($_SESSION["Email"])){
+//     // header("Location: profile.php");
+//     exit(); 
+//   }
 
 ?>
 <!DOCTYPE html>

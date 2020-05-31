@@ -24,7 +24,21 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
+--Structure de la table  `admin` (
+  `id_admin` int(11) NOT NULL,
+  `email_admin` char(100) NOT NULL,
+  `pass_admin` char(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
 --
+-- Déchargement des données de la table `admin`
+--
+
+INSERT INTO `admin` (`id_admin`, `email_admin`, `pass_admin`) VALUES
+(1, 'admin@gmail.com','admin');
+
+-- --------------------------------------------------------
 -- Structure de la table `carte_bancaire`
 --
 

@@ -1,5 +1,6 @@
 <?php
 include('login.php');
+
 ?>
 <?php 
 session_start();
@@ -47,27 +48,37 @@ $con =mysqli_connect($servername,$username,$password,$dbname);
     //    $Password=md5($Password);
        $query="SELECT * FROM `client` WHERE  Email='".$Email."'&&Password='".$Password."'";
       if(mysqli_query($con,$query)){
-
+        header('Location:page2.php');
       }
+
+      
+    //     if ($Email&&$Password)
+    //   {
+
+    //       $query= "INSERT INTO `client` ( `Email`, `Password`) VALUES ( 'admin@gmail.com', 'passwordadmin')";
+    //       $query="SELECT * FROM `client` WHERE  Email='".$Email."'&&Password='".$Password."'";
+    //            if(mysqli_query($con,$query)){
+                   
+    //                header('Location:admin.php');
+    // }
+    // } 
       else{
         echo 'bad'.$query .mysqli_error($con);
       }
-    //    $rows=mysqli_num_rows($sql);
-    //    if ($rows) {
-    //        $_SESSION['Email']=$Email;
-    //     //    header('Location:page2.php');
-    //     $query= mysqli_fetch_assoc($sql);
+    
+    
            
-       } else {
+       }
+       else {
            echo "Email et mot de passe incorrect";
            
        }
        
+    }
 
 
 
 
-}
 
 ?>
 <!DOCTYPE html>
@@ -76,6 +87,7 @@ $con =mysqli_connect($servername,$username,$password,$dbname);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/login.css">
+    <script src="js/index.js"></script>
   
     
     
@@ -97,10 +109,10 @@ $con =mysqli_connect($servername,$username,$password,$dbname);
         <p class="titre3">Encore quelques clics et le tour est joué !</p>
 
    <form action="profile.php" method="POST" style="height: 274px;" >
-        <input type="text"  name="Email" id="Email" placeholder="Adresse e-mail">
-        <input type="password" name="Password" id="Password" placeholder="Mot de passe">
+        <input type="text"  name="Email" id="Email" placeholder="Adresse e-mail"oninput="validation_email();">
+        <input type="password" name="Password" id="Password" placeholder="Mot de passe" oninput="validation_pass();">
         <p class="titre4"> <a href="#">Oups ! J’ai oublié mon mot de passe</a></p>
-        <input type="submit" value="je me connecte!" class="submit" name="submit">
+        <input type="submit" value="je me connecte!" class="submit" name="submit"onclick="validation();" >
    
     </form>
         <div class="sousdiv">
