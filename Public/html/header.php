@@ -1,5 +1,6 @@
 <?php
     include('functions.php');
+    include('login.php');
     session_start();
      
     
@@ -9,6 +10,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=, initial-scale=1.0">
     <link rel="stylesheet" href="../css/header+footer.css">
     <link rel="stylesheet" href="../css/acceuil.css">
@@ -17,6 +19,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Jost&display=swap" rel="stylesheet">
     <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
 </head>
 
 <body>
@@ -39,7 +42,7 @@
                 </div>
                 <div id="Moncompte">
                     <img id="profil" src="../img/profil.png" alt="">
-                    <p>Mon Compte</p>
+                    <p><a href="../html/profile.php"> Mon Compte</a></p>
                 </div>
                 <form id="id_form_panier"  action="Panier.php" method="post">
                     <div id="Panier">
@@ -182,5 +185,8 @@
                 
             </div>
         </form>
+    
     </div>
+    <script src="../js/html5shiv.min.js"></script>
+        <script src="../js/respond.min.js"></script>
     

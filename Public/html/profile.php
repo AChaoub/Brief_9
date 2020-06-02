@@ -48,7 +48,7 @@ $con =mysqli_connect($servername,$username,$password,$dbname);
     //    $Password=md5($Password);
        $query="SELECT * FROM `client` WHERE  Email='".$Email."'&&Password='".$Password."'";
       if(mysqli_query($con,$query)){
-        header('Location:page2.php');
+        header('Location:PageProduits.php');
       }
 
       
@@ -86,8 +86,8 @@ $con =mysqli_connect($servername,$username,$password,$dbname);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/login.css">
-    <script src="js/index.js"></script>
+    <link rel="stylesheet" href="../css/login.css">
+   
   
     
     
@@ -103,20 +103,20 @@ $con =mysqli_connect($servername,$username,$password,$dbname);
 </div>
 
     <div class="contener">
-       <div class="photo"> <img  src="image/imag1.jpg" alt="" class="image" ></div>
+       <div class="photo"> <img  src="../img/imag1.jpg" alt="" class="image" ></div>
         <div class="form">
         <h3 class=titre2> Je me connecte</h3>
         <p class="titre3">Encore quelques clics et le tour est joué !</p>
 
    <form action="profile.php" method="POST" style="height: 274px;" >
-        <input type="text"  name="Email" id="Email" placeholder="Adresse e-mail"oninput="validation_email();">
-        <input type="password" name="Password" id="Password" placeholder="Mot de passe" oninput="validation_pass();">
+        <input type="text"  name="Email" id="Email" placeholder="Adresse e-mail">
+        <input type="password" name="Password" id="Password" placeholder="Mot de passe" >
         <p class="titre4"> <a href="#">Oups ! J’ai oublié mon mot de passe</a></p>
-        <input type="submit" value="je me connecte!" class="submit" name="submit"onclick="validation();" >
+        <input type="submit" value="je me connecte!" class="submit" name="submit">
    
     </form>
         <div class="sousdiv">
-            <p class="titre5"> <a href="#">Vous n’avez pas de compte ?</a></p>
+            <p class="titre5"> <a href="../html/form.php">Vous n’avez pas de compte ?</a></p>
             <input type="text"  name="compte" id="compte" placeholder="Créer mon compte">
         </div>
 
