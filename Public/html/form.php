@@ -19,7 +19,7 @@ include('../html/login.php');
      if ($CIN&&$Nom_client&&$Prenom_client&&$Date_Naissance&&$Tel_Client&&$Email&&$Password&&$Adresse&&$NumCarte)
       {
 
-          $query= "INSERT INTO `client`  (`CIN`, `Nom_client`, `Prenom_client`, `Date_Naissance`, `Tel_Client`, `Email`, `Password`, `Adresse`, `NumCarte`) VALUES ('KH100200', 'salwa', 'elbyed', '1996-05-24', '0622553366', 'salwa@gmail.com', 'password123', 'ASFI 112', 'CARTESALWA152')";
+          $query= "INSERT INTO `client`  (`CIN`, `Nom_client`, `Prenom_client`, `Date_Naissance`, `Tel_Client`, `Email`, `Password`, `Adresse`, `NumCarte`) VALUES ('$CIN', '$Nom_client', '$Prenom_client', '$Date_Naissance', '$Tel_Client', '$Email', '$Password', '$Adresse', '$NumCarte')";
 
                if(mysqli_query($con,$query)){
            
@@ -28,10 +28,7 @@ include('../html/login.php');
     }
           
       } 
-      ///////
-   
-      ///////
-      
+     
       else {
          echo "veulliez saisir tous les champs";
      }
